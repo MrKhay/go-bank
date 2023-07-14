@@ -1,0 +1,48 @@
+definitions:
+    Account:
+        properties:
+            acc_number:
+                format: int64
+                type: integer
+                x-go-name: AccountNumber
+            balance:
+                type: string
+                x-go-name: Balance
+            createdAt:
+                format: date-time
+                type: string
+                x-go-name: CreatedAt
+            email:
+                type: string
+                x-go-name: Email
+            firstname:
+                type: string
+                x-go-name: FirstName
+            lastname:
+                type: string
+                x-go-name: LastName
+        title: Account represents a account object.
+        type: object
+        x-go-package: github.com/mrkhay/gobank/type
+paths:
+    /account:
+        post:
+            operationId: CreateAccount
+            responses:
+                "200":
+                    $ref: '#/responses/AccountResponse'
+                "500":
+                    description: ""
+            summary: Returns account with token..
+            tags:
+                - account
+responses:
+    AccountResponse:
+        description: AccountResponse represents the response for the CreateAccount endpoint.
+        headers:
+            account: {}
+            token:
+                type: string
+        schema:
+            $ref: '#/definitions/Account'
+swagger: "2.0"
