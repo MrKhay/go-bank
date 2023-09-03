@@ -3,6 +3,7 @@ package storage
 import (
 	"database/sql"
 	"fmt"
+	"os"
 	"strconv"
 
 	_ "github.com/lib/pq"
@@ -39,8 +40,7 @@ type PostgresStorage struct {
 }
 
 func NewPostgresStorage() (*PostgresStorage, error) {
-	connStr := "user=postgres dbname=postgres password=gobank sslmode=disable host=localhost port=5432"
-
+	connStr := os.Getenv("POSTGRES_URI")
 	db, err := sql.Open("postgres", connStr)
 
 	if err != nil {
